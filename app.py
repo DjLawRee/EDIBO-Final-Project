@@ -7,6 +7,6 @@ app=Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Here we Go2!"
+    return "Here we Go!"
 
 
