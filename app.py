@@ -7,6 +7,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required
+import user_controll
 
 
 
@@ -75,10 +76,14 @@ def login():
             return apology("must provide password", 403)
 
         # Query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
+        rows = user_controll.check_if_user_exists
 
         # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+        if user_controll.check_if_user_exists(
+            request.form.get('username')
+        ) or not check_password_hash(user_controll.get_user_password(
+            request.form.get('username')
+        ), request.form.get("password")):
             return apology("invalid username and/or password", 403)
 
         # Remember which user has logged in
