@@ -50,7 +50,7 @@ def after_request(response):
 
 @app.route("/")
 def home():
-    return "Here we Go testing!"
+    return render_template("index.html")
 
 
 @app.route("/test")
