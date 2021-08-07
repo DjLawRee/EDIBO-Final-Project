@@ -87,7 +87,9 @@ def login():
             return apology("invalid username and/or password", 403)
 
         # Remember which user has logged in
-        session["user_id"] = user_controll.get_user_data(request.form.get('username')).get('id')
+        
+        session["user_id"] = user_controll.get_user_data(request.form.get('username')).get('Id')
+        print("session id" ,session["user_id"])
         return redirect("/")
 
     # User reached route via GET (as by clicking a link or via redirect)
@@ -110,7 +112,8 @@ def register():
         psw = generate_password_hash(request.form.get("password"),method='pbkdf2:sha256', salt_length=8)
         user_controll.register_user(request.form.get('username'),psw)
 
-        session["user_id"] = user_controll.get_user_data(request.form.get('username')).get('id')
+        session["user_id"] = user_controll.get_user_data(request.form.get('username')).get('Id')
+        print(session['user_id'])
         return redirect("/")
 
     else :
