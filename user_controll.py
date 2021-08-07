@@ -12,9 +12,13 @@ def check_if_user_exists(user_name):
     query=("SELECT Id FROM users WHERE user_name = %s ")
     cursor.execute(query,(user_name,))
     result = cursor.fetchone()
-    if result:
+    id = result.get("Id")
+    print(id)
+    if id is not None:
+        print("TRUE")
         return True
     else:
+        print("FALSE")
         return False
     
 
@@ -28,7 +32,7 @@ def get_user_data(user_name):
 
 def get_user_password(user_name):
     cursor=db.cursor(dictionary=True)
-    query=("SELECT password FROM users WHERE user_name = %s ")
+    query=("SELECT password_hash FROM users WHERE user_name = %s ")
     cursor.execute(query,(user_name,))
     result=cursor.fetchone()
     password = result.get("password_hash")

@@ -77,11 +77,13 @@ def login():
 
         
         # Ensure username exists and password is correct
-        if user_controll.check_if_user_exists(
+        if not user_controll.check_if_user_exists(
             request.form.get('username')
         ) or not check_password_hash(user_controll.get_user_password(
             request.form.get('username')
         ), request.form.get("password")):
+            print(user_controll.get_user_password(request.form.get('username')))
+            print(request.form.get("password"))
             return apology("invalid username and/or password", 403)
 
         # Remember which user has logged in
