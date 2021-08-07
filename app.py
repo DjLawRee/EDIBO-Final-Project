@@ -85,14 +85,37 @@ def login():
             return apology("invalid username and/or password", 403)
 
         # Remember which user has logged in
-        session["user_id"] = user_controll.get_user_data.get('id')
-
-        # Redirect user to home page
+        session["user_id"] = user_controll.get_user_data(request.form.get('username')).get('id')
         return redirect("/")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
+
+
+@app.route("/register",methods=["GET", "POST"])
+def register():
+    session.clear()
+    
+    if request.method == "POST":
+        if not request.form.get('username'):
+            return apology("must provide valid username")
+        if request.form.get('password')!=request.form.get('password2'):
+            return apology("Passwords do not match")
+        if user_controll.get_user_data(request.form.get('username')):
+            return apology('username already exists')
+
+        psw = generate_password_hash(request.form.get("password"),method='pbkdf2:sha256', salt_length=8)
+        user_controll.register_user(request.form.get('username'),psw)
+
+        session["user_id"] = user_controll.get_user_data(request.form.get('username')).get('id')
+        return redirect("/")
+
+    else :
+        return render_template("register.html")
+         
+
+
 
 
 @app.route("/logout")

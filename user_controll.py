@@ -31,12 +31,17 @@ def get_user_password(user_name):
     query=("SELECT password FROM users WHERE user_name = %s ")
     cursor.execute(query,(user_name,))
     result=cursor.fetchone()
-    return result[0]
+    password = result.get("password_hash")
+    print(password)
+    return password
 
 def register_user(user_name,password):
     cursor=db.cursor()
+    values=[user_name,password]
     query=("INSERT INTO users (user_name,password_hash) VALUES(%s,%s)")
-    cursor.execute(query,(user_name,),(password,))
+    cursor.execute(query,values)
+    db.commit()
+    cursor.close()
 
 
 
