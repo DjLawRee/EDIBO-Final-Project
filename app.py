@@ -75,9 +75,7 @@ def login():
         elif not request.form.get("password"):
             return apology("must provide password", 403)
 
-        # Query database for username
-        rows = user_controll.check_if_user_exists
-
+        
         # Ensure username exists and password is correct
         if user_controll.check_if_user_exists(
             request.form.get('username')
@@ -87,7 +85,7 @@ def login():
             return apology("invalid username and/or password", 403)
 
         # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        session["user_id"] = user_controll.get_user_data.get('id')
 
         # Redirect user to home page
         return redirect("/")
