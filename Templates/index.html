@@ -1,10 +1,63 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instaclone</title>
+    <link rel="stylesheet" href="/static/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">   
+</head>
+<body>
+    <div class="main-box">
+        <h1 class="heading-logo text-center">Instaclone</h1>
+        <br><br><br><br><br><br><br>
+        <form action="/login" method="post">
+            <table>
+                <div class="user">
+                    <tr>
+                        <td>
+                            <label></label>
+                            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+                        </td>
+                    </tr>
+                </div>
+            </table>
+            <table>
+                <tr>
+                    <td class="pwd"><label for=""></label>
+                        <input type="password" placeholder="Password" class="form-control" name="password">
+                    </td>
+                    
+                </tr>
+            </table>
+            <br>
+            <button type="submit">Log in</button>
+        </form>
+        <br>
+        <br>
+        <h4>________________OR________________</h4>
+        <a href="https://www.facebook.com">
+            <img src="/static/download.png" alt="">
+        </a>
+        <ul>
+            <ul><a href="#" class="loginfb">Log in with Facebook</a></ul>
+            <br>
+            <ul><a href="#" class="resetpwd">Forgot password?</a></ul>
+        </ul>
 
-{% block title %}
-    Index
-{% endblock %}
-
-{% block main %}
-
-
-{% endblock %}
+    </div>
+    <br>
+    <div class="signup">
+        <p>Don't have an account?<a href="#"> Sign up</a></p>
+    </div>
+    <div class="final">
+        <p>Get the app.</p>
+    </div>
+    <br>
+    <a href="#"><img src="/static/apple.png" class="apple" alt=""></a>
+    <a href="#"><img src="/static/google.png" class="google"  alt=""></a>
+</body>
+</html>
