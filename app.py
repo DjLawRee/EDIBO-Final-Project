@@ -7,7 +7,9 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required
+from flask_mail import Mail, Message
 import user_controll
+
 
 
 
@@ -36,9 +38,20 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-# Configure CS50 Library to use SQLite database
-# db = SQL("sqlite:///finance.db")
+# Flask-mail
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_DEBUG'] = True
+app.config['MAIL_USERNAME'] = 'email login'
+app.config['MAIL_PASSWORD'] = 'email password'
+app.config['MAIL_DEFAULT_SENDER'] = 'default sender'
+app.config['MAIL_MAX_EMAILS'] = 3
+app.config['MAIL_SUPRESS_SEND'] = False
+app.config['MAIL_ASCII_ATTACHMENTS'] = False
 
+mail = Mail(app)
 
 # Ensure responses aren't cached
 @app.after_request
@@ -53,9 +66,15 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/test")
-def test():
-    return render_template("test.html")
+@app.route("/forgot")
+def forgot():
+
+    msg = Message("Hello",
+                  recipients=["test email"])
+    
+    msg.body = "testing"
+    msg.html = "<b>testing</b>"
+    mail.send(msg)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -132,6 +151,7 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
+
 
 
 def errorhandler(e):
