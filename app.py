@@ -8,12 +8,9 @@ from werkzeug.exceptions import default_exceptions, HTTPException, InternalServe
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 from helpers import apology, login_required
-<<<<<<< HEAD
 from flask_mail import Mail, Message
-=======
 from PIL import Image
 
->>>>>>> 5d88424e4ffdd2fa9e56f9e0ac3eeb7cdfd01b32
 import user_controll
 import picture_controll
 
@@ -48,7 +45,6 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-<<<<<<< HEAD
 # Flask-mail
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
@@ -63,10 +59,8 @@ app.config['MAIL_SUPRESS_SEND'] = False
 app.config['MAIL_ASCII_ATTACHMENTS'] = False
 
 mail = Mail(app)
-=======
 
 
->>>>>>> 5d88424e4ffdd2fa9e56f9e0ac3eeb7cdfd01b32
 
 # Ensure responses aren't cached
 @app.after_request
