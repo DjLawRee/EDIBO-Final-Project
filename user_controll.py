@@ -5,7 +5,10 @@ from mysql.connector.cursor import MySQLCursor
 db=mysql.connector.connect(user='root',password='MyNewPass',
                         host='127.0.0.1',
                         database='instaclone')
-
+cursor=db.cursor()
+cursor.execute("CREATE TABLE `users` (`Id` int NOT NULL AUTO_INCREMENT, `user_name` varchar(100) NOT NULL,`password_hash` text NOT NULL,`reg_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY (`Id`)) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;")
+db.commit()
+cursor.close()  
 
 def check_if_user_exists(user_name):
     cursor=db.cursor(dictionary=True)
@@ -26,6 +29,14 @@ def get_user_data(user_name):
     cursor=db.cursor(dictionary=True)
     query=("SELECT * FROM users WHERE user_name = %s ")
     cursor.execute(query,(user_name,))
+    user_data = cursor.fetchone()
+    print(user_data)
+    return user_data
+
+def get_user_data_by_id(user_id):
+    cursor=db.cursor(dictionary=True)
+    query=("SELECT * FROM users WHERE Id = %s ")
+    cursor.execute(query,(user_id,))
     user_data = cursor.fetchone()
     print(user_data)
     return user_data

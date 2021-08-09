@@ -6,16 +6,26 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 from helpers import apology, login_required
+from PIL import Image
+
 import user_controll
+import picture_controll
+
+
 
 
 
 # Configure application
 app = Flask(__name__)
+app.config.from_object(__name__)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["UPLOAD_FOLDER"]="temp_upload"
+app.config["ALLOWED_EXTENSIONS"] = ["png","jpg","jpeg","gif"]
+
 
 
 # Ensure responses aren't cached
@@ -27,17 +37,13 @@ def after_request(response):
     return response
 
 
-# Custom filter
-# app.jinja_env.filters["usd"] = usd
-
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-# Configure CS50 Library to use SQLite database
-# db = SQL("sqlite:///finance.db")
+
 
 
 # Ensure responses aren't cached
@@ -90,7 +96,7 @@ def login():
         
         session["user_id"] = user_controll.get_user_data(request.form.get('username')).get('Id')
         print("session id" ,session["user_id"])
-        return redirect("/")
+        return redirect("/user-home")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -118,9 +124,30 @@ def register():
 
     else :
         return render_template("register.html")
+    
+@app.route("/user-home",methods=["GET","POST"])
+@login_required
+def user_home():
+    user_data=user_controll.get_user_data_by_id(session['user_id'])
+    user_name=user_data.get('user_name')
+    user_images=picture_controll.get_user_pictures(session['user_id'])
+    
+    return render_template("/user-home.html",user_name=user_name,user_images=user_images)
+   
          
 
-
+@app.route("/upload_picture",methods=['POST'])
+@login_required
+def upload_picture():
+    image=request.files['image']
+    image_name=request.form.get("image_name")
+    
+    if not image:
+        return apology("no picture selected")
+    user_id=session["user_id"]
+    picture_controll.upload_image(image,user_id,image_name)
+    return redirect("/user-home")
+    
 
 
 @app.route("/logout")
