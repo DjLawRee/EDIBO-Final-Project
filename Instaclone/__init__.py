@@ -9,7 +9,7 @@ import mysql.connector
 # Configure application
 app = Flask(__name__)
 app.config.from_object(__name__)
-
+app.config['SECRET_KEY'] = '9491628bb0b13ce0c676dfde280ba321'
 db=mysql.connector.connect(user='root',password='MyNewPass',
                         host='127.0.0.1',
                         database='instaclone')

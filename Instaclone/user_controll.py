@@ -24,6 +24,14 @@ def get_user_data(user_name):
     print(user_data)
     return user_data
 
+def get_user_data_by_email(email):
+    cursor=db.cursor(dictionary=True)
+    query=("SELECT * FROM users WHERE email = %s ")
+    cursor.execute(query,(email,))
+    user_data = cursor.fetchone()
+    print(user_data)
+    return user_data
+
 def get_user_data_by_id(user_id):
     cursor=db.cursor(dictionary=True)
     query=("SELECT * FROM users WHERE Id = %s ")
@@ -52,7 +60,6 @@ def register_user(user_name,password,email):
 
 def get_reset_token(self, expires_sec=1800):
         s = Serializer(app.config['SECRET_KEY'], expires_sec)
-        print(s.dumps({'user_id': self.id}).decode('utf-8'))
         return s.dumps({'user_id': self.id}).decode('utf-8')
 
 @staticmethod
@@ -62,10 +69,8 @@ def verify_reset_token(token):
         user_id = s.loads(token)['user_id']
     except:
         return None
-    return User.query.get(user_id)
+    return get_user_data_by_id(user_id)
 
-def __repr__(self):
-    return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
 
 

@@ -16,7 +16,7 @@ def home():
 @app.route("/forgot")
 def forgot():
 
-    Instaclone.user_controll.get_reset_token()
+    return render_template("reset_request.html")
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
@@ -67,7 +67,9 @@ def register():
         if request.form.get('password')!=request.form.get('password2'):
             return apology("Passwords do not match")
         if Instaclone.user_controll.get_user_data(request.form.get('username')):
-            return apology('username already exists')
+            return apology('Username already exists')
+        if Instaclone.user_controll.get_user_data_by_email(request.form.get('email')):
+            return apology('Email already exists')
 
         psw = generate_password_hash(request.form.get("password"),method='pbkdf2:sha256', salt_length=8)
         Instaclone.user_controll.register_user(request.form.get('username'),psw,request.form.get('email'))
