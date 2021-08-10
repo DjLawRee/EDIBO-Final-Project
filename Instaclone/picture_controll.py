@@ -1,20 +1,7 @@
 from PIL import Image
-import mysql.connector
-from mysql.connector import cursor
-from mysql.connector.cursor import MySQLCursor
+from Instaclone import db
 import base64
-import PIL
-import io
 
-
-db=mysql.connector.connect(user='root',password='MyNewPass',
-                        host='127.0.0.1',
-                        database='instaclone')
-print("picture_controll works")
-cursor=db.cursor()
-cursor.execute("CREATE TABLE IF NOT EXISTS `images` (`Id` int NOT NULL AUTO_INCREMENT,`user_id` int NOT NULL,`image` longblob NOT NULL,`Likes` int DEFAULT NULL,`image_name` varchar(100) NOT NULL,PRIMARY KEY (`Id`)) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;")
-db.commit()
-cursor.close()  
 
 def convert_to_binary(image):
     with open(image,"rb") as file:
