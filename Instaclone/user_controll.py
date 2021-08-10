@@ -49,6 +49,15 @@ def get_user_password(user_name):
     print(password)
     return password
 
+def get_user_password_by_email(email):
+    cursor=db.cursor(dictionary=True)
+    query=("SELECT password_hash FROM users WHERE email = %s ")
+    cursor.execute(query,(email,))
+    result=cursor.fetchone()
+    password = result.get("password_hash")
+    print(password)
+    return password
+
 def register_user(user_name,password,email):
     cursor=db.cursor()
     values=[user_name,password,email]
@@ -56,6 +65,8 @@ def register_user(user_name,password,email):
     cursor.execute(query,values)
     db.commit()
     cursor.close()
+
+
 
 
 def get_reset_token(self, expires_sec=1800):

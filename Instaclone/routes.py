@@ -1,8 +1,8 @@
 from flask import redirect, render_template, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from Instaclone.helpers import apology, login_required
-from flask_mail import  Message, Mail
-from Instaclone import app
+from flask_mail import  Message
+from Instaclone import app, mail
 import Instaclone.picture_controll
 import Instaclone.user_controll
 
@@ -13,10 +13,26 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/forgot")
+@app.route("/forgot", methods=["GET", "POST"])
 def forgot():
 
-    return render_template("reset_request.html")
+    if request.method == "POST":
+        if not Instaclone.user_controll.get_user_data_by_email(request.form.get('email')):
+            return apology("Email doesn't exist")
+
+        email = request.form.get('email')
+        msg = Message("Remember Password",
+                    recipients=[email])
+
+        password = Instaclone.user_controll.get_user_password_by_email(email)
+        # testing = "<b>Testing body</b>"
+        msg.body = password
+        # msg.html = testing
+        mail.send(msg)
+
+    else:
+        return render_template("reset_request.html")
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
