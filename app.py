@@ -51,9 +51,9 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_SSL'] = False
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_DEBUG'] = True
-app.config['MAIL_USERNAME'] = 'email login'
-app.config['MAIL_PASSWORD'] = 'email password'
-app.config['MAIL_DEFAULT_SENDER'] = 'default sender'
+app.config['MAIL_USERNAME'] = 'edibo.final@gmail.com'
+app.config['MAIL_PASSWORD'] = 'laurisedas123'
+app.config['MAIL_DEFAULT_SENDER'] = 'edibo.final@gmail.com'
 app.config['MAIL_MAX_EMAILS'] = 3
 app.config['MAIL_SUPRESS_SEND'] = False
 app.config['MAIL_ASCII_ATTACHMENTS'] = False
@@ -79,7 +79,7 @@ def home():
 def forgot():
 
     msg = Message("Hello",
-                  recipients=["test email"])
+                  recipients=["recipient email"])
     
     msg.body = "testing"
     msg.html = "<b>testing</b>"
