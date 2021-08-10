@@ -80,7 +80,8 @@ def register_user(user_name,password,email):
 
 
 def send_reset_email(email):
-    token = get_reset_token(email)
+    id = get_user_id_by_email(email)
+    token = get_reset_token(id)
     msg = Message('Password Reset Request',
                   recipients=[email])
     msg.body = f'''To reset your password, visit the following link:
@@ -93,7 +94,7 @@ def get_reset_token(id, expires_sec=1800):
         s = Serializer(app.config['SECRET_KEY'], expires_sec)
         return s.dumps({'user_id': id}).decode('utf-8')
 
-@staticmethod
+
 def verify_reset_token(token):
     s = Serializer(app.config['SECRET_KEY'])
     try:

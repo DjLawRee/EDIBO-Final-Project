@@ -13,6 +13,11 @@ import Instaclone.user_controll
 def home():
     return render_template("index.html")
 
+@app.route("/test")
+def test():
+    return render_template("reset_token.html")
+
+
 
 @app.route("/forgot", methods=["GET", "POST"])
 def forgot():
@@ -140,10 +145,11 @@ def logout():
 
 @app.route("/reset/<token>", methods=['GET', 'POST'])
 def reset_token(token):
+    
     user = Instaclone.user_controll.verify_reset_token(token)
     if user is None:
         return apology('That is an invalid or expired token')
-    elif request.method == "POST":
+    if request.method == "POST":
 
         if not request.form.get('username'):
             return apology("must provide valid username")
@@ -153,6 +159,7 @@ def reset_token(token):
             return apology('Username already exists')
 
         hashed_password = generate_password_hash(request.form.get("password"),method='pbkdf2:sha256', salt_length=8)
+        
         # Update pass to new one ???
         user.password = hashed_password
         
