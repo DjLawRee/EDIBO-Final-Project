@@ -1,8 +1,9 @@
-from flask import redirect, render_template, request, session
+from flask import redirect, render_template, request, session, flash
+from flask.helpers import url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 from Instaclone.helpers import apology, login_required
 from flask_mail import  Message
-from Instaclone import app, mail
+from Instaclone import app, mail, db
 import Instaclone.picture_controll
 import Instaclone.user_controll
 
@@ -21,14 +22,18 @@ def forgot():
             return apology("Email doesn't exist")
 
         email = request.form.get('email')
-        msg = Message("Remember Password",
-                    recipients=[email])
+        # msg = Message("Remember Password",
+        #             recipients=[email])
 
-        password = Instaclone.user_controll.get_user_password_by_email(email)
+        # password = Instaclone.user_controll.get_user_password_by_email(email)
         # testing = "<b>Testing body</b>"
-        msg.body = password
+        # msg.body = password
         # msg.html = testing
-        mail.send(msg)
+        # mail.send(msg)
+        
+  
+        Instaclone.user_controll.send_reset_email(email)
+        return redirect(url_for('login'))
 
     else:
         return render_template("reset_request.html")
@@ -131,3 +136,36 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
+
+
+@app.route("/reset/<token>", methods=['GET', 'POST'])
+def reset_token(token):
+    user = Instaclone.user_controll.verify_reset_token(token)
+    if user is None:
+        return apology('That is an invalid or expired token')
+    elif request.method == "POST":
+
+        if not request.form.get('username'):
+            return apology("must provide valid username")
+        if request.form.get('password')!=request.form.get('password2'):
+            return apology("Passwords do not match")
+        if Instaclone.user_controll.get_user_data(request.form.get('username')):
+            return apology('Username already exists')
+
+        hashed_password = generate_password_hash(request.form.get("password"),method='pbkdf2:sha256', salt_length=8)
+        # Update pass to new one ???
+        user.password = hashed_password
+        
+
+        session["user_id"] = Instaclone.user_controll.get_user_data(request.form.get('username')).get('Id')
+        print(session['user_id'])
+        db.session.commit()
+        
+
+        print("Success\n")
+        print("Success\n")
+        print("Success\n")
+        print("Success\n")
+        print("Success\n")
+        return redirect(url_for('login'))
+    return render_template('reset_token.html')

@@ -1,5 +1,7 @@
-from Instaclone import db, app
+from Instaclone import db, app, mail
+from flask_mail import  Message
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from flask.helpers import url_for
 
 def check_if_user_exists(user_name):
     cursor=db.cursor(dictionary=True)
@@ -58,6 +60,15 @@ def get_user_password_by_email(email):
     print(password)
     return password
 
+def get_user_id_by_email(email):
+    cursor=db.cursor(dictionary=True)
+    query=("SELECT Id FROM users WHERE email = %s ")
+    cursor.execute(query,(email,))
+    result = cursor.fetchone()
+    id = result.get("Id")
+    print(id)
+    return id
+
 def register_user(user_name,password,email):
     cursor=db.cursor()
     values=[user_name,password,email]
@@ -68,10 +79,19 @@ def register_user(user_name,password,email):
 
 
 
+def send_reset_email(email):
+    token = get_reset_token(email)
+    msg = Message('Password Reset Request',
+                  recipients=[email])
+    msg.body = f'''To reset your password, visit the following link:
+{url_for('reset_token', token=token, _external=True)}
+If you did not make this request then simply ignore this email and no changes will be made.
+'''
+    mail.send(msg)
 
-def get_reset_token(self, expires_sec=1800):
+def get_reset_token(id, expires_sec=1800):
         s = Serializer(app.config['SECRET_KEY'], expires_sec)
-        return s.dumps({'user_id': self.id}).decode('utf-8')
+        return s.dumps({'user_id': id}).decode('utf-8')
 
 @staticmethod
 def verify_reset_token(token):
@@ -81,6 +101,8 @@ def verify_reset_token(token):
     except:
         return None
     return get_user_data_by_id(user_id)
+
+
 
 
 

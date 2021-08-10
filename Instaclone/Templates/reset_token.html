@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='login.css') }}"/>
+{% endblock stylesheet %}
+{% block title %}Register{% endblock %}
+
+{% block content%}
+<form action="/reset" method="post">
+<div id="wrapper">
+    <div class="main-content">
+        <div class="header">
+            <h1 class="heading-logo text-center">Instaclone</h1>
+        </div>
+        <div class="l-part">
+            <input type="text" placeholder="Username" class="input-1" autocomplete="off" autofocus class="form-control" name="username">   
+
+            <div class="overlap-text">
+                <input type="password" placeholder="Password" class="input-2" class="form-control" name="password">
+                
+            </div>
+            <div class="overlap-text">
+                <input type="password" placeholder="Repeat password" class="input-2" class="form-control" name="password2">
+
+
+            <button class="btn btn-primary" type="submit">Change password</button>
+        </div>    
+    </div>
+
+</div>
+</form>
+
+
+{% endblock %}
