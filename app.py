@@ -22,6 +22,8 @@ import picture_controll
 # Configure application
 app = Flask(__name__)
 app.config.from_object(__name__)
+app.config['SECRET_KEY'] = '9891628bb0b13ce0c676dfde280ba441'
+key = app.config['SECRET_KEY'] 
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True

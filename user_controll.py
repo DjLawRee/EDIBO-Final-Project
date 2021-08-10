@@ -1,6 +1,10 @@
+from io import TextIOBase
 import mysql.connector
 from mysql.connector import cursor
 from mysql.connector.cursor import MySQLCursor
+from datetime import datetime
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from app import key
 
 db=mysql.connector.connect(user='root',password='MyNewPass',
                         host='127.0.0.1',
@@ -9,6 +13,8 @@ cursor=db.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS `users` (`Id` int NOT NULL AUTO_INCREMENT, `user_name` varchar(100) NOT NULL,`password_hash` text NOT NULL,`reg_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY (`Id`)) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;")
 db.commit()
 cursor.close()  
+
+
 
 def check_if_user_exists(user_name):
     cursor=db.cursor(dictionary=True)
@@ -58,9 +64,16 @@ def register_user(user_name,password):
     db.commit()
     cursor.close()
 
+def get_reset_token(self, expires_sec=1800):
+    s = Serializer(key, expires_sec)
+    return s.dumps({'user_id': self.id}.decode('utf-8'))
 
-
-
-
+def verify_reset_token(token):
+    s = Serializer(key)
+    try:
+        user_id = s.loads(token)['user_id']
+    except:
+        return None
+    return User.query.get(user_id)
 
 
