@@ -1,4 +1,5 @@
-from Instaclone import db
+from Instaclone import db, app
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 def check_if_user_exists(user_name):
     cursor=db.cursor(dictionary=True)
@@ -40,16 +41,31 @@ def get_user_password(user_name):
     print(password)
     return password
 
-def register_user(user_name,password):
+def register_user(user_name,password,email):
     cursor=db.cursor()
-    values=[user_name,password]
-    query=("INSERT INTO users (user_name,password_hash) VALUES(%s,%s)")
+    values=[user_name,password,email]
+    query=("INSERT INTO users (user_name,password_hash,email) VALUES(%s,%s,%s)")
     cursor.execute(query,values)
     db.commit()
     cursor.close()
 
 
+def get_reset_token(self, expires_sec=1800):
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        print(s.dumps({'user_id': self.id}).decode('utf-8'))
+        return s.dumps({'user_id': self.id}).decode('utf-8')
 
+@staticmethod
+def verify_reset_token(token):
+    s = Serializer(app.config['SECRET_KEY'])
+    try:
+        user_id = s.loads(token)['user_id']
+    except:
+        return None
+    return User.query.get(user_id)
+
+def __repr__(self):
+    return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
 
 

@@ -14,7 +14,7 @@ db=mysql.connector.connect(user='root',password='MyNewPass',
                         host='127.0.0.1',
                         database='instaclone')
 cursor=db.cursor()
-cursor.execute("CREATE TABLE IF NOT EXISTS `users` (`Id` int NOT NULL AUTO_INCREMENT, `user_name` varchar(100) NOT NULL,`password_hash` text NOT NULL,`reg_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY (`Id`)) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;")
+cursor.execute("CREATE TABLE IF NOT EXISTS `users` (`Id` int NOT NULL AUTO_INCREMENT, `user_name` varchar(100) NOT NULL,`password_hash` text NOT NULL, `email` varchar(100) NOT NULL,`reg_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,PRIMARY KEY (`Id`)) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;")
 db.commit()
 cursor.close()  
 

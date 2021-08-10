@@ -16,13 +16,7 @@ def home():
 @app.route("/forgot")
 def forgot():
 
-    msg = Message("Hello",
-                  recipients=["recipient email"])
-    
-    msg.body = "testing"
-    msg.html = "<b>testing</b>"
-    Mail.send(msg)
-
+    Instaclone.user_controll.get_reset_token()
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
@@ -76,7 +70,7 @@ def register():
             return apology('username already exists')
 
         psw = generate_password_hash(request.form.get("password"),method='pbkdf2:sha256', salt_length=8)
-        Instaclone.user_controll.register_user(request.form.get('username'),psw)
+        Instaclone.user_controll.register_user(request.form.get('username'),psw,request.form.get('email'))
 
         session["user_id"] = Instaclone.user_controll.get_user_data(request.form.get('username')).get('Id')
         print(session['user_id'])
