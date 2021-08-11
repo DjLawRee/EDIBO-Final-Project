@@ -149,38 +149,15 @@ def reset_token(token):
     user = Instaclone.user_controll.verify_reset_token(token)
     if user is None:
         return apology('That is an invalid or expired token')
-    print("works till here")
-    if request.method == "POST":
-        print("works after here")
-        # if not request.form.get('username'):
-        #     return apology("must provide valid username")
-        # if request.form.get('password')!=request.form.get('password2'):
-        #     return apology("Passwords do not match")
-        # if Instaclone.user_controll.get_user_data(request.form.get('username')):
-        #     return apology('Username already exists')
-
-        # hashed_password = generate_password_hash(request.form.get("password"),method='pbkdf2:sha256', salt_length=8)
-        
-        # # Update pass to new one ???
-        # user.password = hashed_password
-        
-
-        # session["user_id"] = Instaclone.user_controll.get_user_data(request.form.get('username')).get('Id')
-        # print(session['user_id'])
-        # db.session.commit()
-        
-
-        # print("Success\n")
-        # print("Success\n")
-        # print("Success\n")
-        # print("Success\n")
-        # print("Success\n")
-        return redirect(url_for('login'))
+   
+    session['temp_id'] = user["Id"]
     return render_template('reset_token.html')
 
 
 @app.route("/reset", methods=['POST'])
 def reset():
+    user_id = session.get('temp_id', None)
+    print(user_id)
     if request.method == "POST":
         if request.form.get('password')!=request.form.get('password2'):
             return apology("Passwords do not match")
@@ -189,3 +166,5 @@ def reset():
         return redirect(url_for('login'))
 
     return redirect(url_for('forget'))
+
+
