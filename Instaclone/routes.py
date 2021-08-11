@@ -132,11 +132,11 @@ def upload_picture():
     
 @app.route("/gallery",methods=['GET','POST'])
 @login_required
-def galery():
+def gallery():
     user_id=session['user_id']
-    galery=Instaclone.picture_controll.get_all_pictures(user_id)
+    gallery=Instaclone.picture_controll.get_all_pictures(user_id)
     top_5=Instaclone.picture_controll.get_top5()
-    return render_template("/galery.html",galery=galery,top_5=top_5)
+    return render_template("/gallery.html",gallery=gallery,top_5=top_5)
 
 @app.route("/logout")
 def logout():
@@ -179,13 +179,13 @@ def like(image_Id):
     
     user_id=session["user_id"]
     Instaclone.picture_controll.add_like(user_id,image_Id)
-    return redirect("/galery")
+    return redirect("/gallery")
 
 @app.route("/unlike/<int:image_Id>")
 def unlike(image_Id):
     user_id=session['user_id']
     Instaclone.picture_controll.unlike(user_id,image_Id)
-    return redirect("/galery")
+    return redirect("/gallery")
 
 def check_likes(picture_id):
     user_id=session['user_id']
