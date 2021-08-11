@@ -4,10 +4,16 @@
 <link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='styles.css') }}"/>
 {% endblock stylesheet %}
 {% block content%}
+<h1>TOP 5</h1>
+{% for images in top_5 %}
+<img src="data:image/jpeg;base64,{{images.image}}" width="400px">
+<h5>{{images.Likes}} {{images.image_name}}</h5>
+{% endfor %}
+<h1> all photos</h1>
 {% for images in galery %}
 <div>
 <img src="data:image/jpeg;base64,{{images.image}}" width="400px">
-<h5>{{images.image_name}} </h5>
+<h5>{{images.image_name}} {{images.Likes}} </h5>
 {% if not check_likes(images.Id) %}
 <a href="{{url_for('like', image_Id=images.Id)}}" >Like</a>
 {% else %}

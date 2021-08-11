@@ -135,7 +135,8 @@ def upload_picture():
 def galery():
     user_id=session['user_id']
     galery=Instaclone.picture_controll.get_all_pictures(user_id)
-    return render_template("/galery.html",galery=galery)
+    top_5=Instaclone.picture_controll.get_top5()
+    return render_template("/galery.html",galery=galery,top_5=top_5)
 
 @app.route("/logout")
 def logout():

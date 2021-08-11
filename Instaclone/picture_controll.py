@@ -60,10 +60,10 @@ def get_all_pictures(user_id):
 
     return images
 
-def get_top5(user_id):
+def get_top5():
     cursor=db.cursor(dictionary=True)
-    query=("SELECT Id, image , image_name , Likes FROM images WHERE NOT user_id = %s ORDER BY Likes DESC LIMIT 5")
-    cursor.execute(query,(user_id,))
+    query=("SELECT Id, image , image_name , Likes FROM images  ORDER BY Likes DESC LIMIT 5")
+    cursor.execute(query)
     images=cursor.fetchall()
     
     for image in images:
