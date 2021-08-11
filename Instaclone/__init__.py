@@ -19,7 +19,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS `users` (`Id` int NOT NULL AUTO_INCRE
 db.commit()
 cursor.execute("CREATE TABLE IF NOT EXISTS `images` (`Id` int NOT NULL AUTO_INCREMENT,`user_id` int NOT NULL,`image` longblob NOT NULL,`Likes` int DEFAULT '0',`image_name` varchar(100) NOT NULL,`timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`Id`)) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;")
 db.commit()
-cursor.execute("CREATE TABLE `likes` ( `Id` int NOT NULL AUTO_INCREMENT,`user_id` int NOT NULL,`Image_id` int NOT NULL,PRIMARY KEY (`Id`)) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;")
+cursor.execute("CREATE TABLE IF NOT EXISTS `likes` ( `Id` int NOT NULL AUTO_INCREMENT,`user_id` int NOT NULL,`Image_id` int NOT NULL,PRIMARY KEY (`Id`)) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;")
 db.commit()
 cursor.close() 
 
