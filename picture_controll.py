@@ -14,6 +14,8 @@ print("picture_controll works")
 cursor=db.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS `images` (`Id` int NOT NULL AUTO_INCREMENT,`user_id` int NOT NULL,`image` longblob NOT NULL,`Likes` int DEFAULT NULL,`image_name` varchar(100) NOT NULL,PRIMARY KEY (`Id`)) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;")
 db.commit()
+cursor.execute("CREATE TABLE IF NOT EXISTS `likes` (`Id` int NOT NULL AUTO_INCREMENT, `user_id` int NOT NULL,`Image_id` int NOT NULL,PRIMARY KEY (`Id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;")
+db.commit
 cursor.close()  
 
 def convert_to_binary(image):
@@ -49,3 +51,6 @@ def test(image,image_name,user_id):
     print(image_name,user_id)
     with Image.open(image) as img:
         return img.show()
+
+def add_like(user_id,picture_id):
+    return None

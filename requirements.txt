@@ -2,8 +2,5 @@ mysql-connector-python-rf
 Flask
 Flask-Session
 requests
-<<<<<<< HEAD
 Flask-mail
-=======
 PIL
->>>>>>> 5d88424e4ffdd2fa9e56f9e0ac3eeb7cdfd01b32
