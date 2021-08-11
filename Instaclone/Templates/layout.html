@@ -22,12 +22,12 @@
     </head>
     
 <body>
-    <!-- Breaks css currently -->
+    <!-- Breaks css on other pages -->
     {% if session.user_id %}
     <nav>
         <div class="navigation">
             <div class="logo">
-            <a class="no-underline" href="#">
+            <a class="no-underline" href="/user-home">
                 <i class="fa fa-instagram" aria-hidden="true"></i>
             </a>
             </div>
@@ -43,7 +43,7 @@
             </div>
             </div>
             <div class="navigation-icons">
-            <a href="#" target ="_blank" class="navigation-link">
+            <a href="/gallery"  class="navigation-link">
                 <i class="far fa-compass"></i>
                 
                 
@@ -60,7 +60,7 @@
             <a href="#" class="navigation-link">
                 <i class="far fa-user-circle"></i>
             </a>
-            <a href="#" id="signout" class="navigation-link">
+            <a href="/logout" id="signout" class="navigation-link"  >
                 <i class="fas fa-sign-out-alt"></i>
             </a>
             </div>

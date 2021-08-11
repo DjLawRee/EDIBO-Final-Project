@@ -102,7 +102,7 @@ def register():
 
         session["user_id"] = Instaclone.user_controll.get_user_data(request.form.get('username')).get('Id')
         print(session['user_id'])
-        return redirect("/")
+        return redirect("/user-home")
 
     else :
         return render_template("register.html")
@@ -130,7 +130,7 @@ def upload_picture():
     Instaclone.picture_controll.upload_image(image,user_id,image_name)
     return redirect("/user-home")
     
-@app.route("/galery",methods=['GET','POST'])
+@app.route("/gallery",methods=['GET','POST'])
 @login_required
 def galery():
     user_id=session['user_id']
