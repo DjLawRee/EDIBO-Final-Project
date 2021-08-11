@@ -130,7 +130,12 @@ def upload_picture():
     Instaclone.picture_controll.upload_image(image,user_id,image_name)
     return redirect("/user-home")
     
-
+@app.route("/galery",methods=['GET','POST'])
+@login_required
+def galery():
+    user_id=session['user_id']
+    galery=Instaclone.picture_controll.get_all_pictures(user_id)
+    return render_template("/galery.html",galery=galery)
 
 @app.route("/logout")
 def logout():
@@ -168,4 +173,21 @@ def reset():
 
     return redirect(url_for('forget'))
 
+@app.route("/like/<int:image_Id>")
+def like(image_Id):
+    
+    user_id=session["user_id"]
+    Instaclone.picture_controll.add_like(user_id,image_Id)
+    return redirect("/galery")
 
+@app.route("/unlike/<int:image_Id>")
+def unlike(image_Id):
+    user_id=session['user_id']
+    Instaclone.picture_controll.unlike(user_id,image_Id)
+    return redirect("/galery")
+
+def check_likes(picture_id):
+    user_id=session['user_id']
+    return Instaclone.picture_controll.check_like(user_id,picture_id)
+
+app.jinja_env.globals.update(check_likes=check_likes)

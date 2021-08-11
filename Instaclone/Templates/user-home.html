@@ -6,7 +6,7 @@
 {% block content%}
 <h1> Welcome back , {{user_name}}</h1>
 {% for images in user_images %}
-<img src="data:image/jpeg;base64,{{images.image}}" width="800px">
+<img src="data:image/jpeg;base64,{{images.image}}" width="400px">
 {% endfor %} 
 
 <form action="/upload_picture" enctype="multipart/form-data" method="POST">
@@ -16,6 +16,6 @@
 </form>
 
 <a href="/logout">Log out</a>
-
+<a href="/galery">Galery</a>
 testing
 {% endblock %}

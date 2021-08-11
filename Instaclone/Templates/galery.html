@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='styles.css') }}"/>
+{% endblock stylesheet %}
+{% block content%}
+{% for images in galery %}
+<div>
+<img src="data:image/jpeg;base64,{{images.image}}" width="400px">
+<h5>{{images.image_name}} </h5>
+{% if not check_likes(images.Id) %}
+<a href="{{url_for('like', image_Id=images.Id)}}" >Like</a>
+{% else %}
+<a href="{{url_for('unlike', image_Id=images.Id)}}" >Unlike</a>
+{% endif %}
+</div>
+{% endfor %} 
+
+
+<a href="/logout">Log out</a>
+<a href="/user-home">Home</a>
+testing
+{% endblock %}
