@@ -36,3 +36,6 @@ def test(image,image_name,user_id):
     print(image_name,user_id)
     with Image.open(image) as img:
         return img.show()
+
+def add_like(user_id,picture_id):
+    return None

@@ -162,6 +162,7 @@ def reset():
         if request.form.get('password')!=request.form.get('password2'):
             return apology("Passwords do not match")
         hashed_password = generate_password_hash(request.form.get("password"),method='pbkdf2:sha256', salt_length=8)
+        Instaclone.user_controll.reset_password(hashed_password,user_id)
 
         return redirect(url_for('login'))
 

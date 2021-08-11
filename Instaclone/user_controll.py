@@ -106,6 +106,13 @@ def verify_reset_token(token):
 
 
 
+def reset_password(hashed_password , user_id):
+    cursor=db.cursor()
+    sql=("UPDATE users SET password_hash = %s   WHERE Id = %s ")
+    values=[hashed_password , user_id]
+    cursor.execute(sql,values)
+    db.commit
+    cursor.close()
 
 
 
