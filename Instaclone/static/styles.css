@@ -1,6 +1,7 @@
 @import url('http://fonts.cdnfonts.com/css/billabong');
 body {
-  background: #fafafa;
+  background: #F5F5F5;
+  
 }
 
 /* start header */
@@ -171,13 +172,14 @@ div.desc {
 
 .fromTop {
   margin-top: 40px;
+  text-align: center;
 }
 
 .mainBox {
   background-color: rgba(var(--d87,255,255,255));
   border: 1px solid rgb(221, 220, 220);
   width: 650px;
-  
+  margin-top: 30px;
 }
 
 .mainBox2 {
@@ -186,4 +188,46 @@ div.desc {
   width: 860px;
   margin-left: 460px;
   
+}
+
+.user-image {
+  margin-top: 50px;
+}
+
+h5 {
+  font-weight: 300;
+}
+
+.green {
+  color: green;
+}
+
+.center {
+  align-items: flex-end;
+}
+
+.right {
+  float: right;
+}
+
+a {
+  text-decoration: none;
+  color: inherit
+}
+
+.a, .a:hover
+{   text-decoration: none;
+color: white;}
+
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  
+  line-height: 1.5;
+}
+
+.h1 {
+  font-family: 'Roboto', sans-serif;
+}
+.h5 {
+  font-family: 'Merriweather', serif;
 }

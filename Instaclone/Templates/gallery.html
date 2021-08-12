@@ -1,4 +1,7 @@
 {% extends "layout.html" %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Roboto:wght@700&display=swap" rel="stylesheet">
 {% block stylesheet %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -30,11 +33,11 @@
 <div class="d-flex flex-column align-items-center mainBox2">
     <div class="">
         <div class="gallery mainBox">
-                <h1 class="fromTop">Top 5 Most liked pictures</h1>
+                <h1 class="fromTop align-text-center">Top 5 Most liked pictures</h1>
                 {% for images in top_5 %}
-                <img src="data:image/jpeg;base64,{{images.image}}" width="400px">
-                <h5> Picture Name - {{images.image_name}} <br>
-                    Likes:<i class="fas fa-thumbs-up blue"></i>{{images.Likes}}</h5>
+                <img class="user-image" src="data:image/jpeg;base64,{{images.image}}" width="400px">
+                <h5> Picture Name - <b>{{images.image_name}}</b> <br>
+                    Likes:<i class="fas fa-thumbs-up blue"></i><b><span class="green">{{images.Likes}}</span></b></h5>
                 {% endfor %}
 
         </div>
@@ -43,11 +46,12 @@
 
 <div class="">
     <div class="gallery mainBox">
-        <h1>All photos</h1>
+        <h1 class="fromTop align-text-center">All photos</h1>
         {% for images in gallery %}
         <div>
-        <img src="data:image/jpeg;base64,{{images.image}}" width="400px">
-        <h5>Name:{{images.image_name}} {{images.Likes}} </h5>
+        <img class="user-image" src="data:image/jpeg;base64,{{images.image}}" width="400px">
+        <h5>Name - <b>{{images.image_name}}</b> <br>
+            Likes:<i class="fas fa-thumbs-up blue"></i> <b><span class="green">{{images.Likes}}</span></b> </h5>
         {% if not check_likes(images.Id) %}
         <a href="{{url_for('like', image_Id=images.Id)}}" ><button type="button" class="btn btn-primary"><i class="fas fa-thumbs-up"></i>Like</button></i></a>
         {% else %}
