@@ -180,6 +180,7 @@ div.desc {
   border: 1px solid rgb(221, 220, 220);
   width: 650px;
   margin-top: 30px;
+  border-radius: 20px;
 }
 
 .mainBox2 {
@@ -187,7 +188,6 @@ div.desc {
   border: 1px solid rgb(221, 220, 220);
   width: 860px;
   margin-left: 460px;
-  
 }
 
 .user-image {
@@ -196,6 +196,7 @@ div.desc {
 
 h5 {
   font-weight: 300;
+  margin-left: 10px;
 }
 
 .green {
