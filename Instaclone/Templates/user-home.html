@@ -5,7 +5,9 @@
 {% endblock stylesheet %}
 {% block content%}
 <h1> Welcome back , {{user_name}}</h1>
+
 {% for images in user_images %}
+
 <img src="data:image/jpeg;base64,{{images.image}}" width="400px">
 {% endfor %} 
 
@@ -14,8 +16,8 @@
     <input type="text" name="image_name" placeholder="photo name? ">
     <input type="submit" value="upload picture"/>
 </form>
-
+<!-- 
 <a href="/logout">Log out</a>
 <a href="/gallery">Gallery</a>
-testing
+testing -->
 {% endblock %}
