@@ -33,7 +33,7 @@
 <div class="d-flex flex-column align-items-center mainBox2">
     <div class="">
         <div class="gallery mainBox">
-                <h1 class="fromTop align-text-center">Top 5 Most liked pictures</h1>
+                <h1 class="fromTop align-text-center">Top 5 Most Liked Pictures</h1>
                 {% for images in top_5 %}
                 <img class="user-image" src="data:image/jpeg;base64,{{images.image}}" width="400px">
                 <h5> Picture Name - <b>{{images.image_name}}</b> <br>
@@ -46,11 +46,11 @@
 
 <div class="">
     <div class="gallery mainBox">
-        <h1 class="fromTop align-text-center">All photos</h1>
+        <h1 class="fromTop align-text-center">All Uploaded Photos</h1>
         {% for images in gallery %}
         <div>
         <img class="user-image" src="data:image/jpeg;base64,{{images.image}}" width="400px">
-        <h5>Name - <b>{{images.image_name}}</b> <br>
+        <h5>Picture Name - <b>{{images.image_name}}</b> <br>
             Likes:<i class="fas fa-thumbs-up blue"></i> <b><span class="green">{{images.Likes}}</span></b> </h5>
         {% if not check_likes(images.Id) %}
         <a href="{{url_for('like', image_Id=images.Id)}}" ><button type="button" class="btn btn-primary"><i class="fas fa-thumbs-up"></i>Like</button></i></a>
