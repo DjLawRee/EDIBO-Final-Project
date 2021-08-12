@@ -5,7 +5,14 @@ body {
 }
 
 /* start header */
-
+.welcome-user{
+  width:100%;
+  text-align:center;
+  font-family:"Roboto", sans-serif;
+}
+.welcome-user h1{
+  font-size:400%;
+}
 .navigation {
   background-color: #ffffff;
   height: 80px;

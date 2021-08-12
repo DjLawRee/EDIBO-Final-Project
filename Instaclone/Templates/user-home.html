@@ -4,20 +4,21 @@
 <link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='styles.css') }}"/>
 {% endblock stylesheet %}
 {% block content%}
+<div class="welcome-user">
 <h1> Welcome back , {{user_name}}.</h1>
 <h3>Here are your uploaded pictures:</h3>
-
+</div>
 {% for images in user_images %}
 
 <img src="data:image/jpeg;base64,{{images.image}}" width="400px">
 {% endfor %} 
 
-<div>Upload new pictures here</div>
+<!--div>Upload new pictures here</div>
 <form action="/upload_picture" enctype="multipart/form-data" method="POST">
     <input type="file" name="image"/>
     <input type="text" name="image_name" placeholder="photo name? ">
     <input type="submit" value="upload picture"/>
-</form>
+</form--!>
 <!-- 
 <a href="/logout">Log out</a>
 <a href="/gallery">Gallery</a>
