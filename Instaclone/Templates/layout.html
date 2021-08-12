@@ -29,15 +29,11 @@
             </a>
             </div>
             <div class="navigation-search-container">
-            <i class="fa fa-search"></i>
-            <input class="search-field" type="text" placeholder="Search">
-            <div class="search-container">
-                <div class="search-container-box">
-                <div class="search-results">
-        
-                </div>
-                </div>
-            </div>
+                <form action="/upload_picture" enctype="multipart/form-data" method="POST">
+                    <input type="file" name="image"/>
+                    <input type="text" name="image_name" placeholder="photo name? ">
+                    <input type="submit" value="upload picture"/>
+                </form>
             </div>
             <div class="navigation-icons">
             <a href="/gallery"  class="navigation-link">

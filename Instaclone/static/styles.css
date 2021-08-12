@@ -195,8 +195,10 @@ div.desc {
 }
 
 h5 {
-  font-weight: 300;
+  /* font-weight: 300; */
   margin-left: 10px;
+  font-size: 1.4rem;
+  font-family: 'Merriweather', serif;
 }
 
 .green {
@@ -228,7 +230,4 @@ color: white;}
 
 .h1 {
   font-family: 'Roboto', sans-serif;
-}
-.h5 {
-  font-family: 'Merriweather', serif;
 }
