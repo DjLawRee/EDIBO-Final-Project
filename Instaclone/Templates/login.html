@@ -7,26 +7,29 @@
 
 {% block content%}
 <form action="/login" method="post">
-<div id="wrapper">
-    <div class="main-content">
-        <div class="header">
-            <h1 class="heading-logo text-center">Instaclone</h1>
-        </div>
-        <div class="l-part">
-            <input type="text" placeholder="Username" class="input-1" autocomplete="off" autofocus class="form-control" name="username">   
-            <div class="overlap-text">
-                <input type="password" placeholder="Password" class="input-2" class="form-control" name="password">
-                <a href="#">Forgot?</a>
+    <div id="wrapper">
+        <div class="main-content">
+            <div class="below_insta">
+                <div class="header">
+                    <h1 class="heading-logo text-center">Instaclone</h1>
+                </div>
             </div>
-            <button class="btn btn-primary" type="submit">Log In</button>
+
+            <div class="l-part">
+                <input type="text" placeholder="Username" class="input-1" autocomplete="off" autofocus class="form-control" name="username">   
+                <div class="overlap-text">
+                    <input type="password" placeholder="Password" class="input-2" class="form-control" name="password">
+                    <a href="/forgot">Forgot?</a>
+                </div>
+                <button class="btn btn-primary" type="submit">Log In</button>
+            </div>
+        </div>
+        <div class="sub-content">
+            <div class="s-part">
+                Don't have an account? <a href="/register">Sign up</a>
+            </div>
         </div>
     </div>
-    <div class="sub-content">
-        <div class="s-part">
-            Don't have an account? <a href="/register">Sign up</a>
-        </div>
-    </div>
-</div>
 </form>
 
 {% endblock %}

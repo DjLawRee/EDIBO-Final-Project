@@ -3,32 +3,30 @@
 {% block stylesheet %}
 <link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='login.css') }}"/>
 {% endblock stylesheet %}
-{% block title %}Register{% endblock %}
+{% block title %}Reset{% endblock %}
 
 {% block content%}
 <form action="/forgot" method="post">
-<div id="wrapper">
-    <div class="main-content">
-        <div class="header">
-            <h1 class="heading-logo text-center">Instaclone</h1>
-        </div>
-        <div class="l-part">
-           
-            <div><p>Enter your email and we'll send you a link to reset your password.</p></div>
+    <div id="wrapper">
+        <div class="main-content">
+            <div class="header">
+                <h1 class="heading-logo text-center">Instaclone</h1>
             </div>
-            <div class="overlap-text">
-                <input type="email" placeholder="Email" class="input-2" class="form-control" name="email">
-
+            <div class="l-part">
+                <div class="reset"><p>Enter your email and we'll send you a link to reset your password.</p></div>
+                </div>
+                <div class="overlap-text">
+                    <input type="email" placeholder="Email" class="input-2" class="form-control" name="email">
+                </div>
+                <button class="btn btn-primary" type="submit">Send Password</button>
+            </div>    
+        </div>
+        <div class="sub-content">
+            <div class="s-part">
+                Don't have an account? <a href="/register">Sign up</a>
             </div>
-            <button class="btn btn-primary" type="submit">Send Password</button>
-        </div>    
-    </div>
-    <div class="sub-content">
-        <div class="s-part">
-            Don't have an account? <a href="/register">Sign up</a>
         </div>
     </div>
-</div>
 </form>
 
 

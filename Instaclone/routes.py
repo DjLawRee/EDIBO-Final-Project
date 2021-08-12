@@ -27,14 +27,7 @@ def forgot():
             return apology("Email doesn't exist")
 
         email = request.form.get('email')
-        # msg = Message("Remember Password",
-        #             recipients=[email])
 
-        # password = Instaclone.user_controll.get_user_password_by_email(email)
-        # testing = "<b>Testing body</b>"
-        # msg.body = password
-        # msg.html = testing
-        # mail.send(msg)
         
   
         Instaclone.user_controll.send_reset_email(email)
