@@ -32,7 +32,7 @@
             <div class="navigation-search-container">
                 {% if request.path == '/user-home' %}
                 <form action="/upload_picture" enctype="multipart/form-data" method="POST" class="file-upload">
-                    <label for="upload-photo">Click here to upload picture</label>
+                    <label id="forHover" for="upload-photo">Click here to upload picture</label>
                     <input type="file" name="image" id="upload-photo"/>
                     <input type="text" name="image_name" placeholder="photo name? ">
                     <input type="submit" value="Upload Picture"/>

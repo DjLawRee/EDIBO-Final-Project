@@ -56,7 +56,12 @@ body {
   
   position: relative;
 }
-
+#forHover{
+  transition:0.2s;
+}
+#forHover:hover{
+  font-size:125%;
+}
 .navigation-search-container input {
   font-family: 'Lobster', cursive;
   background-color: #fafafa;
