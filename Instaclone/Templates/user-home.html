@@ -8,11 +8,14 @@
 <h1> Welcome back , {{user_name}}.</h1>
 <h3>Here are your uploaded pictures:</h3>
 </div>
-{% for images in user_images %}
+<div class="user-image-container">
+    <div class="user-image">
+    {% for images in user_images %}
 
-<img src="data:image/jpeg;base64,{{images.image}}" width="400px">
-{% endfor %} 
-
+    <img src="data:image/jpeg;base64,{{images.image}}" width="400px">
+    {% endfor %} 
+    </div>
+</div>
 <!--div>Upload new pictures here</div>
 <form action="/upload_picture" enctype="multipart/form-data" method="POST">
     <input type="file" name="image"/>
