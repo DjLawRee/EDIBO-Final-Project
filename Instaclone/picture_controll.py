@@ -10,7 +10,7 @@ def convert_to_binary(image):
     return binary_data
 
 def upload_image(image , user_id, photo_name):
-    
+ 
     byte_image=image.read()
     encoding = base64.b64encode(byte_image)
     query = "INSERT INTO images (user_id,image,image_name) VALUES(%s,%s,%s)"

@@ -44,13 +44,10 @@ from Instaclone.helpers import apology
 from flask_mail import Mail
 
 
-
-
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["UPLOAD_FOLDER"]="temp_upload"
 app.config["ALLOWED_EXTENSIONS"] = ["png","jpg","jpeg","gif"]
-
 
 
 # Ensure responses aren't cached
@@ -69,9 +66,6 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 
-
-
-
 # Ensure responses aren't cached
 @app.after_request
 def after_request(response):
@@ -79,7 +73,6 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
-
 
 
 def errorhandler(e):

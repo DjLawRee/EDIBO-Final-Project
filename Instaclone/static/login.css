@@ -110,3 +110,13 @@ body {
     left: -66%;
     margin-bottom: 50px;
 }
+
+.reset {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: red;
+}
+
+.below_insta {
+  padding-bottom: 20px;
+}

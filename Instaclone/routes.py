@@ -13,26 +13,14 @@ import Instaclone.user_controll
 def home():
     return render_template("index.html")
 
-@app.route("/test")
-def test():
-    return render_template("reset_token.html")
-
-
-
 @app.route("/forgot", methods=["GET", "POST"])
 def forgot():
-
     if request.method == "POST":
         if not Instaclone.user_controll.get_user_data_by_email(request.form.get('email')):
             return apology("Email doesn't exist")
-
         email = request.form.get('email')
-
-        
-  
         Instaclone.user_controll.send_reset_email(email)
         return redirect(url_for('login'))
-
     else:
         return render_template("reset_request.html")
 

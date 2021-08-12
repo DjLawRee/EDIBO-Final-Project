@@ -77,8 +77,6 @@ def register_user(user_name,password,email):
     db.commit()
     cursor.close()
 
-
-
 def send_reset_email(email):
     id = get_user_id_by_email(email)
     token = get_reset_token(id)
@@ -94,7 +92,6 @@ def get_reset_token(id, expires_sec=1800):
         s = Serializer(app.config['SECRET_KEY'], expires_sec)
         return s.dumps({'user_id': id}).decode('utf-8')
 
-
 def verify_reset_token(token):
     s = Serializer(app.config['SECRET_KEY'])
     try:
@@ -102,9 +99,6 @@ def verify_reset_token(token):
     except:
         return None
     return get_user_data_by_id(user_id)
-
-
-
 
 def reset_password(hashed_password , user_id):
     cursor=db.cursor()
