@@ -32,7 +32,7 @@
             <div class="navigation-search-container">
                 {% if request.path == '/user-home' %}
                 <form action="/upload_picture" enctype="multipart/form-data" method="POST" class="file-upload">
-                    <label id="forHover" for="upload-photo">Click here to upload picture</label>
+                    <label for="upload-photo" style="color:white">Click here to upload picture</label>
                     <input type="file" name="image" id="upload-photo"/>
                     <input type="text" name="image_name" placeholder="photo name? ">
                     <input type="submit" value="Upload Picture"/>
@@ -41,7 +41,7 @@
             </div>
             <div class="navigation-icons">
             <a href="/gallery"  class="navigation-link">
-                <i class="far fa-compass"></i>
+                <i class="far fa-compass" style="color:white"></i>
                 
                 
             </a>
@@ -57,8 +57,8 @@
             <!-- <a href="#" class="navigation-link">
                 <i class="far fa-user-circle"></i> -->
             </a>
-            <a href="/logout" id="signout" class="navigation-link"  >
-                <i class="fas fa-sign-out-alt"></i>
+            <a href="/logout" id="signout" class="navigation-link" >
+                <i class="fas fa-sign-out-alt" style="color:white"></i>
             </a>
             </div>
         </div>
