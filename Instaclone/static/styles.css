@@ -213,7 +213,7 @@ div.desc {
 }
 
 .mainBox {
-  background-color: rgba(var(--d87,255,255,255));
+  background-color: rgba(14,17,17,0.8);
   border: 1px solid rgb(221, 220, 220);
   width: 650px;
   margin-top: 30px;
@@ -221,7 +221,7 @@ div.desc {
 }
 
 .mainBox2 {
-  background-color: rgba(var(--d87,255,255,255));
+  background-color: rgba(0,0,0,0.7);
   border: 1px solid rgb(221, 220, 220);
   width: 860px;
   margin-left: 460px;
@@ -236,6 +236,7 @@ h5 {
   margin-left: 10px;
   font-size: 1.4rem;
   font-family: 'Merienda', cursive;
+  color:white;
 }
 
 .green {
@@ -261,7 +262,7 @@ color: white;}
 
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-  
+  color:rgb(251, 250, 245);
   line-height: 1.5;
 }
 
