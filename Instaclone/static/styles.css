@@ -223,7 +223,7 @@ div.desc {
   background-color: rgba(14,17,17,0.8);
   border: 1px solid rgb(221, 220, 220);
   width: 650px;
-  margin-top: 30px;
+  margin-top: 50px;
   border-radius: 20px;
 }
 
@@ -231,7 +231,8 @@ div.desc {
   background-color: rgba(0,0,0,0.7);
   border: 1px solid rgb(221, 220, 220);
   width: 860px;
-  margin-left: 460px;
+  margin-left: 500px;
+  margin-top: -100px;
 }
 
 .user-image {
@@ -325,4 +326,12 @@ label {
 
 .white {
   color:white;
+}
+
+#top-box {
+  margin-top: 150px;
+}
+
+img {
+  border: 1px solid #ccc;
 }

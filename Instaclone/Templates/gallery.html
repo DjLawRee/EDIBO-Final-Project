@@ -32,7 +32,7 @@
 
 <div class="d-flex flex-column align-items-center mainBox2">
     <div class="">
-        <div class="gallery mainBox">
+        <div class="gallery mainBox" id="top-box">
                 <h1 class="fromTop align-text-center">Top 5 Most Liked Pictures</h1>
                 {% for images in top_5 %}
                 <img class="user-image" src="data:image/jpeg;base64,{{images.image}}" width="400px">
