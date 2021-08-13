@@ -16,12 +16,13 @@ body {
 .welcome-user h1{
   color:white;
   font-family: 'Style Script', cursive;
-  font-size:400%;
+  font-size:600%;
 }
 
 .welcome-user h3{
   color:white;
   font-family: 'Lobster', cursive;
+  font-size:200%;
 }
 .navigation {
   background-color:rgba(0, 0,0, 0.67);
@@ -233,6 +234,7 @@ div.desc {
 }
 
 .user-image-container{
+  
   width:100%;
   display:flex;
   flex-wrap: wrap;
@@ -240,14 +242,20 @@ div.desc {
 }
 
 .user-container-image{
+  background-color: rgba(0,0,0,1);
   width:30%;
+  height:384px;
   display:flex;
   justify-content:center;
   margin:5px;
 }
 
 .user-container-image img{
-  width:100%;
+  max-width:100%;
+  max-height:100%;
+  height:100%;
+  width:auto;
+  object-fit: contain;
 }
 
 h5 {
